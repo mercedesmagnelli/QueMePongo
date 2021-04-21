@@ -22,7 +22,7 @@ Diagrama para la primera iteración
 
 
 
-![diagrama](QMP1.png)
+![diagrama](QMP1 (1).png)
 
 
 

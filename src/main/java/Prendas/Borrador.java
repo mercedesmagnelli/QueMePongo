@@ -1,5 +1,6 @@
 package Prendas;
 
+import Armario.Armario;
 import Caracteristicas.Color;
 import Caracteristicas.Material;
 import Caracteristicas.TipoDePrenda;
@@ -22,7 +23,10 @@ public class Borrador {
     this.material = material;
   }
 
+
   public Prenda crearPrenda() {
-    return new Prenda(tipoPrenda, material);
+    Prenda prendaNueva = new Prenda(tipoPrenda, material);
+    Armario.instance().cargarPrenda(prendaNueva);
+    return prendaNueva;
   }
 }

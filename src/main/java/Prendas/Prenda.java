@@ -14,4 +14,12 @@ public class Prenda {
     this.tipoPrenda = tipoPrenda;
     this.material = material;
   }
+
+  public Categoria getCategoria() {
+    return tipoPrenda.getCategoria();
+  }
+
+  public boolean temperaturaAceptable(double unaTemp) {
+    return tipoPrenda.temperaturaAceptable(unaTemp);
+  }
 }

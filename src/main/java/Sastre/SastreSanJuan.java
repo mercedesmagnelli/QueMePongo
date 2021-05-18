@@ -9,26 +9,20 @@ import Prendas.Prenda;
 
 public class SastreSanJuan extends Sastre{
   public Prenda fabricarParteSuperior(){
-    TipoDePrenda chombaSanJuan = TipoDePrenda.chomba();
-    Borrador borrador = new Borrador(chombaSanJuan);
-    Material materialesChombaSJ = new Material (TipoDeMaterial.PIQUE, new Color(0, 255, 0));
-    borrador.setMaterial(materialesChombaSJ);
+    Borrador borrador = new Borrador(TipoDePrenda.chomba());
+    borrador.setMaterial(new Material (TipoDeMaterial.PIQUE, new Color(0, 255, 0)));
     return borrador.crearPrenda();
 }
 
  public Prenda fabricarParteInferior() {
-   TipoDePrenda pantalonSanJuan = TipoDePrenda.pantalon();
-   Borrador borrador = new Borrador(pantalonSanJuan);
-   Material materialesPantalonSJ = new Material (TipoDeMaterial.ACETATO, new Color(150, 152, 154));
-   borrador.setMaterial(materialesPantalonSJ);
+   Borrador borrador = new Borrador(TipoDePrenda.pantalon());
+   borrador.setMaterial(new Material (TipoDeMaterial.ACETATO, new Color(150, 152, 154)));
    return borrador.crearPrenda();
   }
 
   public Prenda fabricarCalzado() {
-    TipoDePrenda zapatosSanJuan = TipoDePrenda.zapato();
-    Borrador borrador = new Borrador(zapatosSanJuan);
-    Material materialesZapatosSJ = new Material (TipoDeMaterial.CUERINA, new Color(255, 255, 255));
-    borrador.setMaterial(materialesZapatosSJ);
+    Borrador borrador = new Borrador(TipoDePrenda.zapato());
+    borrador.setMaterial(new Material (TipoDeMaterial.CUERINA, new Color(255, 255, 255)));
     return borrador.crearPrenda();
   }
 }

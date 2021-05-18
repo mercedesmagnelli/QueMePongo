@@ -20,6 +20,7 @@ public class Atuendo {
      calzado =  unaQueCumple(Categoria.CALZADO,temp);
      return this;
   }
+
   public Optional<Prenda> unaQueCumple(Categoria unaCat, double temp) {
     return obtenerListaDeCategoria(unaCat).stream().filter(prenda -> prenda.temperaturaAceptable(temp)).collect(Collectors.toList()).stream().findAny();
   }

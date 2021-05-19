@@ -2,7 +2,7 @@ package APICLima;
 
 import java.util.*;
 
-public final class AccuWeatherAPI {
+public final class AccuWeatherAPI implements APIClima {
 
   public final List<Map<String, Object>> getWeather(String ciudad) {
     return Arrays.asList(new HashMap<String, Object>(){{

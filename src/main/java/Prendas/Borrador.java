@@ -1,7 +1,6 @@
 package Prendas;
 
 import Armario.Armario;
-import Caracteristicas.Color;
 import Caracteristicas.Material;
 import Caracteristicas.TipoDePrenda;
 import java.util.Objects;

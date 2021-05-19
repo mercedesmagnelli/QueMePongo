@@ -5,8 +5,8 @@ import APICLima.Clima;
 
 public class Administrador {
 
-  public void cambiarServicioObtencionClima(APIClima unaAPI, int cantidadMaximaConsultas) {
-   Clima.instance().configurarAPI(unaAPI, cantidadMaximaConsultas);
+  public void cambiarServicioObtencionClima(APIClima unaAPI) {
+   Clima.instance().setUnaAPIClima(unaAPI);
   }
 
 }

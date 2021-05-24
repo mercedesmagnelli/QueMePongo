@@ -4,9 +4,8 @@ import exceptions.MuchasConsultasException;
 
 import java.util.*;
 
-public final class AccuWeatherAPI implements APIClima {
-  int cantidadMaximaConsultas;
-  int consultasDiaras=0;
+public final class AccuWeatherAPI {
+
   public final List<Map<String, Object>> getWeather(String ciudad) {
     return Arrays.asList(new HashMap<String, Object>() {{
       put("DateTime", "2019-05-03T01:00:00-03:00");
@@ -24,18 +23,7 @@ public final class AccuWeatherAPI implements APIClima {
       }});
     }});
   }
-  public void controlarCantidadMaximaDeConsultas() {
-    consultasDiaras+=1;
-    if (consultasDiaras > cantidadMaximaConsultas) {
-      throw new MuchasConsultasException("Ya hiciste muchas consultas");
-    }
-  }
-  public double calculoCostoConsultasAdicionales(){
-    return this.costoDeConsultasAdicionales() * Math.max(0, (consultasDiaras - cantidadMaximaConsultas));
+
   }
 
-  public double costoDeConsultasAdicionales() {
-    return 0.05;
-  }
 
-}

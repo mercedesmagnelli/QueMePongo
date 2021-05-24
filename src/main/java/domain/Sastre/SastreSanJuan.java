@@ -1,10 +1,10 @@
-package Sastre;
-import Caracteristicas.Color;
-import Caracteristicas.Material;
-import Caracteristicas.TipoDeMaterial;
-import Caracteristicas.TipoDePrenda;
-import Prendas.Borrador;
-import Prendas.Prenda;
+package domain.Sastre;
+import domain.Caracteristicas.Color;
+import domain.Caracteristicas.Material;
+import domain.Caracteristicas.TipoDeMaterial;
+import domain.Caracteristicas.TipoDePrenda;
+import domain.Prendas.Borrador;
+import domain.Prendas.Prenda;
 
 
 public class SastreSanJuan extends Sastre{

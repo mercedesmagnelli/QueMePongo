@@ -1,10 +1,9 @@
-package Prendas;
+package domain.Prendas;
 
-import Armario.Armario;
-import Caracteristicas.Material;
-import Caracteristicas.TipoDePrenda;
+import domain.Armario.Armario;
+import domain.Caracteristicas.Material;
+import domain.Caracteristicas.TipoDePrenda;
 import java.util.Objects;
-
 
 public class Borrador {
 

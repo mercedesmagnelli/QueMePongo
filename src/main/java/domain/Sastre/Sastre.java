@@ -1,6 +1,6 @@
-package Sastre;
-import Prendas.Prenda;
-import Prendas.Uniforme;
+package domain.Sastre;
+import domain.Prendas.Prenda;
+import domain.Prendas.Uniforme;
 
 public abstract class Sastre {
 

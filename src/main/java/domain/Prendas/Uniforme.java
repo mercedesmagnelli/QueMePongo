@@ -1,4 +1,4 @@
-package Prendas;
+package domain.Prendas;
 
 public class Uniforme {
     Prenda prendaSuperior;

@@ -1,4 +1,4 @@
-package Caracteristicas;
+package domain.Caracteristicas;
 
 public class Color {
 

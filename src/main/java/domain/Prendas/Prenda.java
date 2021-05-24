@@ -1,10 +1,7 @@
-package Prendas;
+package domain.Prendas;
 
-import Caracteristicas.Categoria;
-import Caracteristicas.Color;
-import Caracteristicas.Material;
-import Caracteristicas.TipoDePrenda;
 
+import domain.Caracteristicas.*;
 public class Prenda {
 
   TipoDePrenda tipoPrenda;

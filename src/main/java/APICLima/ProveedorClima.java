@@ -1,22 +1,17 @@
 package APICLima;
 
 
-import exceptions.MuchasConsultasException;
+public interface ProveedorClima {
 
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-
-public class Clima {
-  //la haría un singleton así podría ser conocida en varios lugares
-
-  APIClima unaAPIClima;
+  double getTemperatura();
+//este es el adapter
+}
+//la haría un singleton así podría ser conocida en varios lugares
+  /*APIClima unaAPIClima;
   LocalDate ultimaConsulta;
-  private static final Clima INSTANCE = new Clima();
+  private static final ProveedorClima INSTANCE = new ProveedorClima();
 
-  public static Clima instance() {
+  public static ProveedorClima instance() {
     return INSTANCE;
   }
   //aca tengo la duda de si el getWeather me setea ya la fecha, sino tndría que meter el chequeo ahi,
@@ -28,14 +23,10 @@ public class Clima {
   }
 
 
-  public double getTemperatura(){
-   return  climaSegunAPISeleccionada().get("Temperature").get("Value");
-  }
 
 
   public void setUnaAPIClima(APIClima unaAPIClima) {
     this.unaAPIClima = unaAPIClima;
   }
+*/
 
-
-}

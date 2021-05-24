@@ -28,7 +28,6 @@ public class AsesorDeImagen {
       this.sugerirPrendaInferior(),
       this.sugerirAccesorio(),
       this.sugerirCalzado());
-
   }
 
   public Optional<Prenda> unaQueCumple(Categoria unaCat) {

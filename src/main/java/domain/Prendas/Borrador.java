@@ -1,6 +1,6 @@
 package domain.Prendas;
 
-import domain.Armario.Armario;
+
 import domain.Caracteristicas.Material;
 import domain.Caracteristicas.TipoDePrenda;
 import java.util.Objects;
@@ -24,7 +24,6 @@ public class Borrador {
 
   public Prenda crearPrenda() {
     Prenda prendaNueva = new Prenda(tipoPrenda, material);
-    Armario.instance().cargarPrenda(prendaNueva);
     return prendaNueva;
   }
 }

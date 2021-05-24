@@ -24,6 +24,7 @@ public final class AccuWeatherAPI {
     }});
   }
 
-  }
+
+}
 
 

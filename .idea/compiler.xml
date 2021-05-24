@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="QueMePongo" target="8" />
+      <module name="QueMePongo" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

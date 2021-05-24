@@ -1,7 +1,5 @@
 package APICLima;
 
-import exceptions.MuchasConsultasException;
-
 import java.util.*;
 
 public final class AccuWeatherAPI {

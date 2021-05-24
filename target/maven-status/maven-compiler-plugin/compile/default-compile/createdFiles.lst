@@ -5,14 +5,16 @@ domain\Prendas\Borrador.class
 APICLima\ProveedorClima.class
 domain\Caracteristicas\Material.class
 domain\Caracteristicas\TipoDePrenda.class
-exceptions\MuchasConsultasException.class
 domain\Armario\Armario.class
 domain\Prendas\Uniforme.class
 domain\Sastre\Sastre.class
+domain\Armario\ArmarioCompartido.class
 domain\AsesorDeImagen.class
 domain\Caracteristicas\Trama.class
 domain\Sastre\SastreJohnston.class
 domain\Sastre\SastreSanJuan.class
+exceptions\prendaYaAgregadaException.class
 APICLima\ProveedorClimaAccuWeatherAPI.class
 domain\Caracteristicas\Color.class
+Usuarios\Usuario.class
 domain\Caracteristicas\TipoDeMaterial.class

@@ -1,6 +1,6 @@
 # QueMePongo
 
-iagrama que se va actualizando con las entregas 
+diagrama que se va actualizando con las entregas 
 
 
 

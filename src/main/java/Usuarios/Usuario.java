@@ -3,6 +3,7 @@ package Usuarios;
 import domain.Armario.Armario;
 import domain.Armario.ArmarioCompartido;
 import domain.Prendas.Accion;
+import domain.Prendas.EstadoSugerencia;
 import domain.Prendas.Prenda;
 import domain.Prendas.PrendaSugerida;
 import exceptions.ArmarioInaccesibleException;
@@ -21,7 +22,7 @@ public class Usuario {
   }
 
   public void crearGuardarropaCompartido(List<Usuario> listaUsuarios) {
-    ArmarioCompartido comp = new ArmarioCompartido(this, listaUsuarios);
+    ArmarioCompartido comp = new ArmarioCompartido(listaUsuarios);
     armariosCompartidosConOtros.add(comp);
     listaUsuarios.forEach(user -> user.agregarArmario(comp));
   }
@@ -43,11 +44,28 @@ public class Usuario {
   }
 
 
-  public List<ArmarioCompartido> getArmariosCompartidosConOtros() {
-    return armariosCompartidosConOtros;
-  }
-
   public List<ArmarioCompartido> getArmariosCompartidosConmigo() {
     return armariosCompartidosConmigo;
   }
+
+  public void aceptarSugerencia(ArmarioCompartido comp, PrendaSugerida unaSugerencia) {
+   // this.controlArmarioCompartidoPropio(comp);
+    comp.controlarSugerenciaExiste(unaSugerencia);
+    comp.aceptarSugerencia(unaSugerencia);
+
+  }
+  public void rechazarSugerencia(ArmarioCompartido comp, PrendaSugerida unaSugerencia) {
+    // this.controlArmarioCompartidoPropio(comp);
+    comp.controlarSugerenciaExiste(unaSugerencia);
+    comp.rechazarSugerencia(unaSugerencia);
+  }
+
+
+  public void deshacerSugerencia(PrendaSugerida sugerencia, ArmarioCompartido comp) {
+    comp.controlarSugerenciaExiste(sugerencia);
+    comp.deshacerSugerencia(sugerencia);
+
+  }
+
 }
+

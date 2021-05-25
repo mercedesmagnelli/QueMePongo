@@ -17,7 +17,7 @@ public class Armario {
   }
 
 
-  public void cargarPrenda(domain.Prendas.Prenda unaPrenda){
+  public void cargarPrenda(Prenda unaPrenda){
     prendas.add(unaPrenda);
   }
 
@@ -26,5 +26,7 @@ public class Armario {
   }
 
 
-
+  protected void quitarPrenda(Prenda prendaSugerida) {
+    prendas.remove(prendaSugerida);
+  }
 }

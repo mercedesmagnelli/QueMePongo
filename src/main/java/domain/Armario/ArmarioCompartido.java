@@ -1,8 +1,8 @@
 package domain.Armario;
 
 import Usuarios.Usuario;
-import domain.Prendas.Accion;
-import domain.Prendas.PrendaSugerida;
+import domain.Prendas.*;
+import exceptions.DomainExceptionArmario;
 import exceptions.SugerenciaInexistenteException;
 
 import java.util.ArrayList;
@@ -10,49 +10,28 @@ import java.util.List;
 
 public class ArmarioCompartido extends Armario {
 
-  List<Usuario> usuariosCompartidos;
-  List<PrendaSugerida> sugerencias = new ArrayList<>();
+  private List<SugerenciaPrenda> sugerencias;
 
-  public ArmarioCompartido(List<Usuario> users) {
+  public ArmarioCompartido() {
     super();
-    this.usuariosCompartidos = users;
+    sugerencias = new ArrayList<SugerenciaPrenda>();
   }
 
-  public void agregarSugerencia(PrendaSugerida sugerencia) {
-    sugerencias.add(sugerencia);
+  public void agregarSugerenciaAgregar(Prenda unaPrenda){
+    sugerencias.add(new SugerenciaPrendaAgregar(unaPrenda, EstadoSugerencia.ENPROCESO));
   }
 
-  public void aceptarSugerencia(PrendaSugerida unaSugerencia) {
-    unaSugerencia.aceptarSugerencia();
-    this.tomarAccion(unaSugerencia);
+  public void agregarSugerenciaQuitar(Prenda unaPrenda){
+    sugerencias.add(new SugerenciaPrendaQuitar(unaPrenda, EstadoSugerencia.ENPROCESO));
   }
-  public void rechazarSugerencia(PrendaSugerida unaSugerencia) {
-    unaSugerencia.rechazarSugerencia();
-    this.tomarAccion(unaSugerencia);
 
+  public List<SugerenciaPrenda> getSugerencias(){
+    return sugerencias;
   }
 
 
-  public void controlarSugerenciaExiste(PrendaSugerida unaSugerencia) {
-    if(!sugerencias.contains(unaSugerencia)) {
-      throw new SugerenciaInexistenteException("Nunca se hizo esa sugerencia");
-    }
-  }
-
-  public void deshacerSugerencia(PrendaSugerida sugerencia) {
-    sugerencia.deshacer();
-    if(sugerencia.getUnaAccion().equals(Accion.AGREGAR)) {
-      this.quitarPrenda(sugerencia.getPrendaSugerida());
-   }else {
-      this.cargarPrenda(sugerencia.getPrendaSugerida());
-    }
-  }
-  public void tomarAccion(PrendaSugerida unaSugerencia) {
-    if(unaSugerencia.getUnaAccion().equals(Accion.AGREGAR)){
-      this.cargarPrenda(unaSugerencia.getPrendaSugerida());}
-    else {
-      this.quitarPrenda(unaSugerencia.getPrendaSugerida());
-    }
+  public void controlarExistenciaSugerencia(SugerenciaPrenda unaSugerencia){
+    if(!sugerencias.contains(unaSugerencia)) throw new DomainExceptionArmario("La sugerencia no existe en el guardarropas");
   }
 
 }

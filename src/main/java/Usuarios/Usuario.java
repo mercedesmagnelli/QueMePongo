@@ -3,68 +3,80 @@ package Usuarios;
 import domain.Armario.Armario;
 import domain.Armario.ArmarioCompartido;
 import domain.Prendas.Accion;
-import domain.Prendas.EstadoSugerencia;
 import domain.Prendas.Prenda;
-import domain.Prendas.PrendaSugerida;
+import domain.Prendas.SugerenciaPrenda;
 import exceptions.ArmarioInaccesibleException;
+import exceptions.DomainExceptionArmario;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Usuario {
+  List<Armario> misArmario;
+  List<ArmarioCompartido> misArmarioCompartidos;
+  List<ArmarioCompartido> otrosArmarioCompartidos;
 
-  List<Armario> misArmarios = new ArrayList<Armario>();
-  List<ArmarioCompartido> armariosCompartidosConOtros = new ArrayList<ArmarioCompartido>();
-  List<ArmarioCompartido> armariosCompartidosConmigo = new ArrayList<ArmarioCompartido>();
-
-  public void crearArmarioPropio() {
-    misArmarios.add(new Armario());
+  public Usuario() {
+    this.misArmario = new ArrayList<Armario>();
+    this.misArmarioCompartidos = new ArrayList<ArmarioCompartido>();
+    this.otrosArmarioCompartidos = new ArrayList<ArmarioCompartido>();
   }
 
-  public void crearGuardarropaCompartido(List<Usuario> listaUsuarios) {
-    ArmarioCompartido comp = new ArmarioCompartido(listaUsuarios);
-    armariosCompartidosConOtros.add(comp);
-    listaUsuarios.forEach(user -> user.agregarArmario(comp));
+  public void crearArmarioPropio(){
+    misArmario.add(new Armario());
   }
 
-  private void agregarArmario(ArmarioCompartido comp) {
-    armariosCompartidosConOtros.add(comp);
+  public void crearArmarioCompartidos(List<Usuario> usuariosACompartir){
+    ArmarioCompartido unGuardarropaNuevo = new ArmarioCompartido();
+    misArmarioCompartidos.add(unGuardarropaNuevo);
+    usuariosACompartir.stream().forEach(usuario->usuario.agregarGuardarropaCompartido(unGuardarropaNuevo));
   }
 
-  public void recomendacionPrendaAOtroUsuario(Usuario recomendado, Prenda sugerencia, ArmarioCompartido compartido, Accion unaAccion){
-   this.controlArmarioAccesible(compartido);
-   recomendado.controlArmarioAccesible(compartido);
-   compartido.agregarSugerencia(new PrendaSugerida(sugerencia, unaAccion));
+  public void agregarGuardarropaCompartido(ArmarioCompartido unGuardarrodaCompartido){
+    otrosArmarioCompartidos.add(unGuardarrodaCompartido);
   }
 
-  public void controlArmarioAccesible(ArmarioCompartido compartido) {
-    if (!this.getArmariosCompartidosConmigo().contains(compartido)) {
-      throw new ArmarioInaccesibleException("No se puede acceder a lo requerido");
-    }
+  public void compartirGuardarropaCon(Usuario usuario, ArmarioCompartido miArmarioCompartido){
+    controlarArmarioCompartidoPropio(miArmarioCompartido);
+    usuario.agregarGuardarropaCompartido(miArmarioCompartido);
   }
 
-
-  public List<ArmarioCompartido> getArmariosCompartidosConmigo() {
-    return armariosCompartidosConmigo;
+  public void hacerSugerenciaPrendaAgregarEnArmario(Prenda unaPrenda, ArmarioCompartido unArmarioComp){
+    controlarArmarioCompartidoConUsuario(unArmarioComp);
+    unArmarioComp.agregarSugerenciaAgregar(unaPrenda);
   }
 
-  public void aceptarSugerencia(ArmarioCompartido comp, PrendaSugerida unaSugerencia) {
-   // this.controlArmarioCompartidoPropio(comp);
-    comp.controlarSugerenciaExiste(unaSugerencia);
-    comp.aceptarSugerencia(unaSugerencia);
-
-  }
-  public void rechazarSugerencia(ArmarioCompartido comp, PrendaSugerida unaSugerencia) {
-    // this.controlArmarioCompartidoPropio(comp);
-    comp.controlarSugerenciaExiste(unaSugerencia);
-    comp.rechazarSugerencia(unaSugerencia);
+  public void hacerSugerenciaPrendaQuitarEnArmario(Prenda unaPrenda, ArmarioCompartido unArmarioComp){
+    controlarArmarioCompartidoConUsuario(unArmarioComp);
+    unArmarioComp.agregarSugerenciaQuitar(unaPrenda);
   }
 
+  public List<SugerenciaPrenda> verSugerenciasDeArmario(ArmarioCompartido miArmarioComp){
+    this.controlarArmarioCompartidoPropio(miArmarioComp);
+    return miArmarioComp.getSugerencias();
+  }
 
-  public void deshacerSugerencia(PrendaSugerida sugerencia, ArmarioCompartido comp) {
-    comp.controlarSugerenciaExiste(sugerencia);
-    comp.deshacerSugerencia(sugerencia);
+  public void aceptarSugerencia(ArmarioCompartido miGuardarropaComp, SugerenciaPrenda unaSugerencia){
+    this.controlarArmarioCompartidoPropio(miGuardarropaComp);
+    unaSugerencia.aceptarSugerencia(miGuardarropaComp);
+  }
 
+  public void rechazarSugerencia(ArmarioCompartido miGuardarropaComp, SugerenciaPrenda unaSugerencia){
+    this.controlarArmarioCompartidoPropio(miGuardarropaComp);
+    unaSugerencia.rechazarSugerencia(miGuardarropaComp);
+  }
+
+  public void deshacerSugerencia(ArmarioCompartido miGuardarropaComp, SugerenciaPrenda unaSugerencia){
+    this.controlarArmarioCompartidoPropio(miGuardarropaComp);
+    unaSugerencia.deshacerSugerencia(miGuardarropaComp);
+  }
+
+  public void controlarArmarioCompartidoPropio(ArmarioCompartido miGuardarropaComp){
+    if(!misArmarioCompartidos.contains(miGuardarropaComp)) throw new DomainExceptionArmario("Usuario no es propietario del guardarropas compartido");
+  }
+
+  public void controlarArmarioCompartidoConUsuario(ArmarioCompartido unArmarioComp){
+    if(!otrosArmarioCompartidos.contains(unArmarioComp)) throw new DomainExceptionArmario("Usuario no tiene acceso a este guardarropas");
   }
 
 }
